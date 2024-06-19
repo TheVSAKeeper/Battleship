@@ -1,0 +1,46 @@
+﻿<Window x:Class="Battleship.WPF.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:Battleship.WPF.Views"
+        xmlns:viewModels="clr-namespace:Battleship.WPF.ViewModels"
+        mc:Ignorable="d"
+        FontSize="24"
+        Title="Морской Бой"
+        Height="450"
+        Width="900"
+        d:DataContext="{d:DesignInstance viewModels:BattleshipVM}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="20">
+            <TextBlock d:Text="0:00"
+                       Text="{Binding Time}"
+                       FontSize="36"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,10" />
+            <TextBlock Text="{Binding Steps}"
+                       d:Text="Step: 5" />
+            <TextBlock Text="{Binding Goal}"
+                       d:Text="Goal: 3" />
+            <Button FontSize="12"
+                    Command="{Binding FillEnemyMapCommand}"
+                    Content="Fill Enemy map" />
+        </StackPanel>
+
+        <views:MapView DataContext="{Binding OurMap}"
+                       Grid.Column="1"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+
+        <views:MapView DataContext="{Binding EnemyMap}"
+                       Grid.Column="2"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+    </Grid>
+</Window>
